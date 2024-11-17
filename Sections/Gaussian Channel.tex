@@ -1,0 +1,138 @@
+\section{Gaussian Channel}
+If a channel has a continuous random variable resulting in a continuous alphabet, then the channel is known as a continuous alphabet channel. The most important example of a continuous alphabet channel is the Gaussian channel. This channel is a model of some common applications like common communication channels (wired and wireless telephone channels and satellite links). Let us define the Gaussian channel:
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{red}]
+\begin{defn} \textbf{(Gaussian Channel)} The Gaussian channel is a time-discrete channel with the sum of the input $X_i$ and the noise $Z_i$ and output $Y_i$ at time $i$. Thus,
+%
+\begin{eqnarray}
+    Y_i = X_i+Z_i,
+\end{eqnarray}
+%
+where $Z_i$ is drawn i.i.d. from a Gaussian distribution with variance $N$ \textit{i.e.} $Z_i \sim \mathcal{N}(0, N)$.
+\end{defn}
+\end{tcolorbox}
+%
+Additionally, the noise $Z_i$ is assumed to be independent of the input signal $X_i$. If the noise variance is zero or the input is unfettered, then this channel can achieve an infinite capacity.
+%
+\begin{tcolorbox}[enhanced,
+  colback=green!0!black!0!white,colframe=black!15!blue,title=Why Noises can be considered as Gaussian?]
+The additive noise in communication channels may occur due to many causes. The central limit theorem says that the cumulative effect of a large number of small random effects will be approximately normal. So, the Gaussian assumption is valid in a large number of situations. Therefore, Noises in a channel can be considered Gaussian because they have a probability density function (pdf) equal to the normal distribution, called \textbf{Gaussian Noise}.
+\end{tcolorbox}
+%
+\subsection{Some Definitions}
+First, let us define the most general limitation on the input of a channel which is an energy or power constraint. It limits the amount of power that can be used in a channel. Formally,
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{red}]
+\begin{defn} \textbf{(The Power Constraint)} For any codeword $(x_1, x_2,..., x_n)$ transmitted over the channel, we require that
+%
+\begin{eqnarray}
+    \frac{1}{n}\sum_{i=1}^n x_i^2 \leq P,
+\end{eqnarray}
+%
+where $P$ is the power constraint.
+\end{defn}
+\end{tcolorbox}
+%
+For the next definition, we define capacity, including power constraints.
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{red}]
+\begin{defn} \textbf{(The Information Capacity)} The information capacity of the Gaussian channel with power constraint $P$ is
+%
+\begin{eqnarray}
+    C = \max_{f:\expt{X^2} \leq P} I(X;Y) \label{4.1.0}.
+\end{eqnarray}
+\end{defn}
+\end{tcolorbox}
+%
+Now, for the differential mutual entropy, we can expand
+%
+\begin{eqnarray}
+    I(X;Y) = h(Y)-h(Y|X) = h(Y)-h(X+Z|X) = h(Y) - h(Z|X) = h(Y) - h(Z) \label{4.1.1},
+\end{eqnarray}
+%
+where $Z$ is independent of $X$. Now, we know that $h(Z) = \frac{1}{2}\log 2\pi e N$. As $X$ and $Z$ are independent, we can write,
+%
+\begin{eqnarray}
+    \expt{Y^2} &=& \expt{(X+Z)^2} \nonumber\\
+    &=& \expt{X^2}+2\expt{X}\expt{Z}+\expt{Z^2} \nonumber\\
+    &=& P+N. \quad [\text{as $\expt{Z} = 0$}.]
+\end{eqnarray}
+%
+In this step, we will use the following theorem:
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{blue}]
+\begin{thm} Let the random vector $\mathbf{X} \in \mathbf{\mathbf{R}^n}$ have zero mean and covariance $K = \expt{\mathbf{XX}^t}$ (\textit{i.e.}, $K_{ij}=\expt{EX_iX_j}, 1\leq I, j\leq n$). Then,
+%
+\begin{eqnarray}
+    h(\mathbf{X}) \leq \frac{1}{2}\log(2\pi e)^n\abs{K},
+\end{eqnarray}
+%
+with equality iff $\mathbf{X} \sim \mathcal{N}(0, K)$.
+\end{thm}
+\end{tcolorbox}
+%
+Therefore, $h(Y)$ is bounded by $\frac{1}{2}\log 2\pi e (P+N)$. So, from \eqref{4.1.1},
+%
+\begin{eqnarray}
+    I(X;Y) &=& h(Y)-h(Z) \nonumber\\
+    &\leq& \frac{1}{2}\log 2\pi e (P+N)-\frac{1}{2}\log 2\pi e N \nonumber\\
+    &=& \frac{1}{2}\log(1+\frac{P}{N}).
+\end{eqnarray}
+%
+Finally, from \eqref{4.1.0}, the information capacity of Gaussian channel is
+%
+\begin{eqnarray}
+    C = \max_{f:\expt{X^2} \leq P} I(X;Y) = \frac{1}{2}\log(1+\frac{P}{N}).
+\end{eqnarray}
+%
+This maximum can be attained when $X \sim \mathcal{N}(0,P)$.
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{red}]
+\begin{defn} \textbf{($(M,n)$ code)} An $(M,n)$ code for the Gaussian channel with power constraint $P$ consists of the following:
+%
+\begin{enumerate}
+    \item An index set $\{1,2,...,M\}$.
+    \item An encoding function $x:\{1,2,...,M\} \rightarrow \mathcal{X}^n$, yielding codewords $x^n(1), x^n(2),...,x^n(M)$, satisfying the power constraint $P$; that is, for the every codeword
+    %
+    \begin{eqnarray}
+        \sum_{i=1}^n x_i^2(w) \leq nP, \quad w=1,2,...,M.
+    \end{eqnarray}
+    %
+    \item A decoding function
+    %
+    \begin{eqnarray}
+        g:\mathcal{Y}^n \rightarrow \{1,2,...,M\}.
+    \end{eqnarray}
+\end{enumerate}
+%
+\end{defn}
+\end{tcolorbox}
+%
+The arithmetic average of the probability of error is defined by
+%
+\begin{eqnarray}
+    P_e^{(n)} = \frac{1}{2^{nR}}\sum_i \lambda_i.
+\end{eqnarray}
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{red}]
+\begin{defn} \textbf{(Achievable Rate)} A rate $R$ is said to be achievable for a Gaussian channel with a power constraint $P$ if there exists a sequence of $(2^{nR},n)$ codes with codewords satisfying the power constraint such that the maximal probability of error $\lambda^{(n)}$ tends to zero. The capacity of the channel is the supremum of the achievable rates.
+\end{defn}
+\end{tcolorbox}
+%
+\subsection{The Channel Coding Theorem}
+One of the fundamental theorems of the information theory is the Channel coding theorem. Shannon stated and proved this in his original paper \cite{shannon1948}. This theorem provides insight into how to fix all errors introduced by the channel.
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{blue}]
+\begin{thm} \textbf{(The Channel Coding Theorem)}
+\begin{enumerate}
+    \item There exists a $(2^{nR},n)$ rate $R$ code satisfying the power constraint such that the decoding error probability $P_e^{(n)}$ can be made arbitrarily small, if the code rate is lower than the capacity $R<C$, with
+    %
+    \begin{eqnarray}
+        C = \frac{1}{2}\log(1+\frac{P}{N})
+    \end{eqnarray}
+    %
+    \item (Converse) Any $(2^{nR},n)$ rate $R$ code that can achieve $P_e^{(n)}$ must satisfy $R\leq C$.
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+%

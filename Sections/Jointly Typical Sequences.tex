@@ -1,0 +1,79 @@
+
+\section{Jointly Typical Sequences}
+To calculate $Pe$ for jointly typical decoding, joining AEP is needed, and below is a brief explanation of the same.
+For some joint distribution \( p(x_1, x_2, \ldots, x_k) \) where \((x_1, x_2, \ldots, x_k) \in \mathcal{X}_1 \times \mathcal{X}_2 \times \cdots \times \mathcal{X}_k\)  and let \((X_1, X_2, \ldots, X_k)\) denote a finite collection of discrete RV's.
+Considering \(n\) independent copies of \(S\) where \(S\) is an ordered subset of these RV's.
+\begin{equation}
+    \Pr(S = s) = \prod_{i=1}^{n} \Pr(S_i = s_i), \quad s \in \mathcal{S}^n
+\end{equation}
+For such a subset \(S\) of RV's, By the law of large numbers:
+\begin{equation}
+    -\frac{1}{n} \log p(S_1, S_2, \ldots, S_n) = -\frac{1}{n} \sum_{i=1}^{n} \log p(S_i) \rightarrow H(S),
+\end{equation}
+for all \(2^k\) subsets, \(S \subseteq (X_1, X_2, \ldots, X_k)\), convergence happens  with probability 1 simultaneously.
+
+\subsection{Some Definitions and Theorems}
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{red}]
+\begin{defn}The set \( A^{(n)}_\epsilon (X_1, X_2, \ldots, X_k) \) is defined by
+\begin{equation}
+    A^{(n)}_\epsilon = \left\{ (x_1, x_2, \ldots, x_k) : \left| -\frac{1}{n} \log p(s) - H(S) \right| < \epsilon, \, \forall S \subseteq \{X_1, X_2, \ldots, X_k\} \right\}
+\end{equation}
+\end{defn}
+\end{tcolorbox}
+%
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{red}]
+\begin{defn}for \(n\) sufficiently large notation \( a_n \doteq 2^{n(b \pm \epsilon)} \) to mean
+\begin{equation}
+    \left| \frac{1}{n} \log a_n - b \right| < \epsilon 
+\end{equation}
+\end{defn}
+\end{tcolorbox}
+%
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{blue}]
+\begin{thm}For any \( \epsilon > 0 \), for sufficiently large \( n \),
+\begin{enumerate}
+    \item \( P(A^{(n)}_\epsilon(S)) \geq 1 - \epsilon, \quad \forall S \subseteq \{X_1, X_2, \ldots, X_k\}. \)
+    \item \( s \in A^{(n)}_\epsilon(S) \Rightarrow p(s) \doteq 2^{-n(H(S) \pm \epsilon)}. \) 
+    \item \( |A^{(n)}_\epsilon(S)| \doteq 2^{n(H(S) \pm 2\epsilon)}. \) 
+    \item Let \( S_1, S_2 \subseteq \{X_1, X_2, \ldots, X_k\} \). If \((s_1, s_2) \in A^{(n)}_\epsilon(S_1, S_2)\), then
+    \begin{equation}
+        p(s_1, s_2) \doteq 2^{-n(H(S_1, S_2) \pm 2\epsilon)}
+    \end{equation}
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+%
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{blue}]
+\begin{thm}Let \( S_1, S_2 \) be two subsets of \( X_1, X_2, \ldots, X_k \). For any
+\( \epsilon > 0 \), define \( A^{(n)}_\epsilon(S_1 | S_2) \) to be the set of \( s_1 \) sequences that are jointly
+\( \epsilon \)-typical with a particular \( s_2 \) sequence. If \( s_2 \in A^{(n)}_\epsilon(S_2) \), then for sufficiently large \( n \), we have
+\begin{equation}
+    |A^{(n)}_\epsilon(S_1 | S_2)| \leq 2^{n(H(S_1 | S_2) + 2\epsilon)},
+\end{equation}
+and
+\begin{equation}
+    (1 - \epsilon) 2^{n(H(S_1 | S_2) - 2\epsilon)} \leq \sum_{s_2} p(s_2) |A^{(n)}_\epsilon(S_1 | S_2)|
+\end{equation}
+\end{thm}
+\end{tcolorbox}
+%
+%
+\begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced, opacityback=0, borderline west={2pt}{0pt}{blue}]
+\begin{thm}Let \( A^{(n)} \) denote the typical set for the probability mass function \( p(s_1, s_2, s_3) \), and let
+
+\begin{equation}
+P(S_i = s_1, S_j = s_2; S_k = s_3) = \prod_{i=1}^{n} p(s_{i} | s_{j}) p(s_{j} | s_{k}) p(s_{k})
+\end{equation}
+
+Then
+
+\begin{equation}
+P\left((S_i, S_j, S_k) \in A^{(n)}\right) \approx 2^{-n(I(S_i; S_j | S_k) + I(S_i; S_k))}
+\end{equation}
+\end{thm}
+\end{tcolorbox}
+%

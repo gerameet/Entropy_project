@@ -1,0 +1,36 @@
+\section*{\textcolor{blue}{Bandlimited Channels}}
+
+\textbf{\textcolor{teal}{Definition}}: A bandlimited channel is commonly used for communication systems like radio or telephone, where the frequency is limited to a maximum of \( W \).
+
+\textbf{\textcolor{teal}{Signal Representation}}:
+The output \( Y(t) \) of a bandlimited channel with white noise is modelled as:
+\[
+Y(t) = (X(t) + Z(t)) * h(t)
+\]
+where:
+\begin{itemize}
+    \item \( X(t) \): Input signal.
+    \item \( Z(t) \): White Gaussian noise.
+    \item \( h(t) \): Impulse response of a bandpass filter that removes frequencies above \( W \).
+\end{itemize}
+
+\textbf{\textcolor{teal}{Nyquist–Shannon Theorem}}: If a signal is bandlimited to \( W \), sampling at \( \frac{1}{2W} \) seconds suffices to reconstruct the signal perfectly.
+
+\textbf{\textcolor{teal}{Channel Capacity}}:
+For a bandlimited Gaussian channel with power \( P \) and noise spectral density \( \frac{N_0}{2} \), the channel capacity \( C \) in bits per second is given by:
+\[
+C = W \log \left(1 + \frac{P}{N_0 W}\right)
+\]
+where:
+\begin{itemize}
+    \item \( W \): Bandwidth.
+    \item \( P \): Signal power.
+    \item \( N_0 \): Noise power spectral density.
+\end{itemize}
+
+\textbf{\textcolor{teal}{Infinite Bandwidth Limit}}:
+As \( W \to \infty \), capacity becomes:
+\[
+C = \frac{P}{N_0} \log_2 e \text{ bits/second}
+\]
+
